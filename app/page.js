@@ -19,7 +19,7 @@ const SCRIPTS = [
     title: "COMING SOON",
     subtitle: "coming soon",
     badge: "UTIL",
-    views: "2.1K",
+    views: "0",
     status: "UPDATED",
     image: "", // no image = fallback icon
     code: `-- Coming Soon!`,
