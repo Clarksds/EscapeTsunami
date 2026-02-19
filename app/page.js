@@ -18,7 +18,7 @@ const SCRIPTS = [
     title: "COMING SOON",
     subtitle: "coming soon",
     badge: "UTIL",
-    views: "4.2K",
+    views: "0",
     status: "UPDATED",
     code: `Coming Soon!`,
   },
