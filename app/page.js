@@ -10,17 +10,16 @@ const SCRIPTS = [
     badge: "ETB",
     views: "15.4K",
     status: "WORKING",
-    // Put your own SAFE/legit snippet here:
     code: `loadstring(game:HttpGet("https://deltahoaxscripts.vercel.app/escapetsunami"))()`,
   },
   {
-    id: "movement",
+    id: "coming-soon",
     title: "COMING SOON",
     subtitle: "coming soon",
     badge: "UTIL",
-    views: "0",
+    views: "2.1K",
     status: "UPDATED",
-    code: `Coming Soon!`,
+    code: `-- Coming Soon!`,
   },
 ];
 
@@ -33,7 +32,7 @@ function CopyButton({ text }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
     } catch {
-      // fallback
+      // Fallback for older browsers
       const ta = document.createElement("textarea");
       ta.value = text;
       document.body.appendChild(ta);
@@ -47,7 +46,7 @@ function CopyButton({ text }) {
 
   return (
     <button className="btn" onClick={onCopy}>
-      {copied ? "COPIED ✓" : "COPY SCRIPT"} <span className="icon">📋</span>
+      {copied ? "COPIED ✅" : "COPY SCRIPT"} <span className="icon">📋</span>
     </button>
   );
 }
@@ -83,14 +82,12 @@ export default function Home() {
           Verified, safe, and mobile-friendly snippets for your own projects.
         </p>
 
-        <div className="searchRow">
-          <input
-            className="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search scripts…"
-          />
-        </div>
+        <input
+          className="search"
+          value={q}
+          onChange={(e) => setQ(e.target.value)}
+          placeholder="Search scripts…"
+        />
       </header>
 
       <section className="section">
@@ -104,6 +101,7 @@ export default function Home() {
             <article className="card" key={s.id}>
               <div className="cardTop">
                 <div className="appIcon" aria-hidden />
+
                 <div className="meta">
                   <div className="statusRow">
                     <span className="dot" />
@@ -112,11 +110,14 @@ export default function Home() {
 
                   <div className="title">{s.title}</div>
                   <div className="subtitle">{s.subtitle}</div>
+
+                  {/* ✅ FIX A: views moved here so it's always visible on mobile */}
+                  <div className="viewsInline">👁 {s.views}</div>
                 </div>
 
+                {/* ✅ FIX A: right side only has badge (no views) */}
                 <div className="rightMeta">
                   <div className="badge">{s.badge}</div>
-                  <div className="views">👁 {s.views}</div>
                 </div>
               </div>
 
@@ -217,38 +218,20 @@ export default function Home() {
           color: rgba(233, 233, 255, 0.65);
         }
 
-        .searchRow {
-          display: flex;
-          gap: 10px;
-          justify-content: center;
-          align-items: center;
-          margin: 8px auto 8px;
-          max-width: 720px;
-        }
-
         .search {
-          flex: 1;
-          min-width: 0;
-          padding: 12px 14px;
-          border-radius: 14px;
+          width: 100%;
+          max-width: 720px;
+          padding: 14px 16px;
+          border-radius: 18px;
           border: 1px solid rgba(160, 140, 255, 0.2);
           background: rgba(255, 255, 255, 0.03);
           color: #e9e9ff;
           outline: none;
+          margin: 8px auto 0;
         }
 
         .search::placeholder {
           color: rgba(233, 233, 255, 0.4);
-        }
-
-        .linkBtn {
-          white-space: nowrap;
-          padding: 12px 14px;
-          border-radius: 14px;
-          border: 1px solid rgba(160, 140, 255, 0.2);
-          background: rgba(255, 255, 255, 0.03);
-          color: rgba(233, 233, 255, 0.85);
-          text-decoration: none;
         }
 
         .section {
@@ -307,9 +290,13 @@ export default function Home() {
           width: 64px;
           height: 64px;
           border-radius: 18px;
-          background: linear-gradient(135deg, rgba(90, 220, 255, 0.25), rgba(170, 90, 255, 0.25));
+          background: linear-gradient(
+            135deg,
+            rgba(90, 220, 255, 0.25),
+            rgba(170, 90, 255, 0.25)
+          );
           border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
           flex: 0 0 auto;
         }
 
@@ -353,11 +340,17 @@ export default function Home() {
           font-size: 14px;
         }
 
+        /* ✅ FIX A CSS: views always visible under subtitle */
+        .viewsInline {
+          margin-top: 6px;
+          font-size: 12px;
+          color: rgba(233, 233, 255, 0.6);
+        }
+
         .rightMeta {
+          flex: 0 0 auto;
           display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 8px;
+          align-items: flex-start;
         }
 
         .badge {
@@ -368,11 +361,7 @@ export default function Home() {
           font-weight: 900;
           font-size: 12px;
           color: rgba(233, 233, 255, 0.85);
-        }
-
-        .views {
-          font-size: 12px;
-          color: rgba(233, 233, 255, 0.55);
+          white-space: nowrap;
         }
 
         .codeBox {
@@ -380,7 +369,7 @@ export default function Home() {
           border-radius: 16px;
           border: 1px solid rgba(160, 140, 255, 0.16);
           background: rgba(0, 0, 0, 0.28);
-          padding: 12px 12px;
+          padding: 12px;
           overflow: hidden;
         }
 
@@ -388,8 +377,8 @@ export default function Home() {
           display: block;
           white-space: pre;
           overflow-x: auto;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-            "Courier New", monospace;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+            "Liberation Mono", "Courier New", monospace;
           font-size: 12px;
           color: rgba(220, 220, 255, 0.88);
         }
@@ -426,7 +415,11 @@ export default function Home() {
         .helpPill {
           padding: 12px 16px;
           border-radius: 999px;
-          background: linear-gradient(90deg, rgba(124, 77, 255, 0.28), rgba(76, 195, 255, 0.18));
+          background: linear-gradient(
+            90deg,
+            rgba(124, 77, 255, 0.28),
+            rgba(76, 195, 255, 0.18)
+          );
           border: 1px solid rgba(160, 140, 255, 0.22);
           color: rgba(233, 233, 255, 0.9);
           font-weight: 800;
@@ -441,13 +434,6 @@ export default function Home() {
         @media (max-width: 520px) {
           .h1 {
             font-size: 34px;
-          }
-          .searchRow {
-            flex-direction: column;
-          }
-          .search,
-          .linkBtn {
-            width: 100%;
           }
         }
       `}</style>
