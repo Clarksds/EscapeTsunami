@@ -98,9 +98,6 @@ export default function Home() {
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search scripts…"
           />
-          <a className="linkBtn" href="/escapetsunami">
-            Raw endpoint
-          </a>
         </div>
       </header>
 
