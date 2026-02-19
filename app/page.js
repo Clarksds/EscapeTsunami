@@ -16,13 +16,13 @@ const SCRIPTS = [
   },
   {
     id: "coming-soon",
-    title: "COMING SOON",
-    subtitle: "coming soon",
+    title: "DELTA EXECUTOR",
+    subtitle: "Best Roblox Executor",
     badge: "UTIL",
     views: "0",
     status: "UPDATED",
     image: "", // no image = fallback icon
-    code: `-- Coming Soon!`,
+    code: `https://delta.filenetwork.vip/android.html`,
   },
 ];
 
