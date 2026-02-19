@@ -21,7 +21,7 @@ const SCRIPTS = [
     badge: "UTIL",
     views: "0",
     status: "UPDATED",
-    image: "", // no image = fallback icon
+    image: "/images/delta.jpeg", // no image = fallback icon
     code: `https://delta.filenetwork.vip/android.html`,
   },
 ];
