@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 
 const SCRIPTS = [
   {
@@ -10,6 +11,7 @@ const SCRIPTS = [
     badge: "ETB",
     views: "15.4K",
     status: "WORKING",
+    image: "/images/redyn.jpg", // ✅ put your image in public/images/tsunami.png
     code: `loadstring(game:HttpGet("https://deltahoaxscripts.vercel.app/escapetsunami"))()`,
   },
   {
@@ -19,6 +21,7 @@ const SCRIPTS = [
     badge: "UTIL",
     views: "2.1K",
     status: "UPDATED",
+    image: "", // no image = fallback icon
     code: `-- Coming Soon!`,
   },
 ];
@@ -32,7 +35,6 @@ function CopyButton({ text }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1200);
     } catch {
-      // Fallback for older browsers
       const ta = document.createElement("textarea");
       ta.value = text;
       document.body.appendChild(ta);
@@ -100,7 +102,21 @@ export default function Home() {
           {filtered.map((s) => (
             <article className="card" key={s.id}>
               <div className="cardTop">
-                <div className="appIcon" aria-hidden />
+                {/* ✅ Thumbnail image (fallback to gradient icon) */}
+                <div className="thumb">
+                  {s.image ? (
+                    <Image
+                      src={s.image}
+                      alt={`${s.title} thumbnail`}
+                      width={64}
+                      height={64}
+                      className="thumbImg"
+                      priority={s.id === "tsunami"}
+                    />
+                  ) : (
+                    <div className="appIcon" aria-hidden />
+                  )}
+                </div>
 
                 <div className="meta">
                   <div className="statusRow">
@@ -115,7 +131,7 @@ export default function Home() {
                   <div className="viewsInline">👁 {s.views}</div>
                 </div>
 
-                {/* ✅ FIX A: right side only has badge (no views) */}
+                {/* ✅ FIX A: right side only has badge */}
                 <div className="rightMeta">
                   <div className="badge">{s.badge}</div>
                 </div>
@@ -286,6 +302,26 @@ export default function Home() {
           align-items: center;
         }
 
+        /* ✅ Image thumb container */
+        .thumb {
+          width: 64px;
+          height: 64px;
+          border-radius: 18px;
+          overflow: hidden;
+          flex: 0 0 auto;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
+          background: rgba(255, 255, 255, 0.03);
+        }
+
+        .thumbImg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        /* Fallback gradient icon if no image */
         .appIcon {
           width: 64px;
           height: 64px;
@@ -295,9 +331,6 @@ export default function Home() {
             rgba(90, 220, 255, 0.25),
             rgba(170, 90, 255, 0.25)
           );
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35);
-          flex: 0 0 auto;
         }
 
         .meta {
@@ -340,7 +373,7 @@ export default function Home() {
           font-size: 14px;
         }
 
-        /* ✅ FIX A CSS: views always visible under subtitle */
+        /* ✅ FIX A: views always visible under subtitle */
         .viewsInline {
           margin-top: 6px;
           font-size: 12px;
